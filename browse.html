@@ -1,0 +1,942 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ecology tool directory · Shuai Wu</title><style>
+:root{color-scheme:light;--ink:#152f29;--muted:#506760;--forest:#155a44;--line:#cfdbd4;--paper:#f4f6f0;--white:#fff;--accent:#bce0af}
+*{box-sizing:border-box}body{margin:0;color:var(--ink);background:var(--paper);font:16px/1.5 "Inter","Source Sans 3",system-ui,sans-serif}
+a{color:var(--forest);text-underline-offset:.2em}button,input,select{font:inherit}button,select,summary{cursor:pointer}
+:focus-visible{outline:3px solid #72942c;outline-offset:3px}.wrap{max-width:1240px;margin:auto;padding:0 clamp(1rem,4vw,3.75rem)}
+header{background:#173e33;color:white;padding:2.1rem 0 1.9rem}.byline{font-size:.92rem;color:#c8dfcc;margin:0 0 1rem}
+header h1{font:600 clamp(2rem,5vw,3.8rem)/1.06 "Inter",system-ui,sans-serif;letter-spacing:-.045em;margin:0}
+header .intro{max-width:52rem;color:#e0ecdf;margin:.85rem 0 0}.filters{display:grid;grid-template-columns:1.25fr 1.1fr 1.3fr .8fr;gap:.75rem;padding:1.35rem 0 .9rem}
+label{display:flex;flex-direction:column;gap:.3rem;font-size:.8rem;font-weight:650;color:var(--muted)}
+input,select{height:2.7rem;min-width:0;width:100%;background:#fff;border:1px solid #9fb2a4;border-radius:.45rem;padding:0 .65rem;color:var(--ink);font-size:.94rem;font-weight:400}
+.statusline{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin:.1rem 0 1rem}.statusline p{margin:0;color:var(--muted);font-size:.9rem}
+button{border:1px solid var(--forest);border-radius:.4rem;background:transparent;color:var(--forest);font-size:.88rem;padding:.36rem .8rem;font-weight:600}
+button:hover{background:#e0eadd}.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.95rem}
+.card{min-width:0;background:var(--white);border:1px solid var(--line);border-radius:.65rem;padding:1rem 1.15rem .9rem;display:flex;flex-direction:column}
+.card-head{display:flex;align-items:baseline;justify-content:space-between;gap:.7rem;flex-wrap:wrap}.task{font-weight:650;color:var(--forest);font-size:.78rem}
+.ecosystem{font-size:.74rem;color:#466258}.card h2{font-size:1.4rem;line-height:1.18;letter-spacing:-.025em;margin:.65rem 0 .35rem;overflow-wrap:anywhere}
+.use{font-size:.95rem;margin:0 0 .8rem}details{font-size:.86rem;color:var(--muted);margin:.05rem 0 .9rem}summary{color:var(--ink)}
+dl{display:grid;grid-template-columns:auto 1fr;gap:.4rem .65rem;line-height:1.4;margin:.6rem 0 0}dt{font-weight:650}dd{margin:0}
+.source{margin-top:auto;padding-top:.7rem;border-top:1px solid #e4ebe5}.source a{font-size:.85rem;font-weight:650;text-decoration:none}.source a:hover{text-decoration:underline}
+.more{text-align:center;margin:1.3rem 0 2rem}.more button{background:var(--forest);color:white;padding:.6rem 1.25rem}.empty{margin:2rem 0}
+[hidden]{display:none!important}footer{font-size:.83rem;color:var(--muted);margin:1.5rem 0;padding:1rem 0;border-top:1px solid var(--line)}
+@media(max-width:950px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.filters{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:590px){.cards{grid-template-columns:minmax(0,1fr)}header{padding:1.5rem 0}.filters{gap:.6rem}label:first-child{grid-column:1/-1}label:last-child{grid-column:1/-1}.card{padding:1rem}.card-head{align-items:flex-start}}
+@media print{header{background:white;color:black;padding:.5rem 0}.byline,header .intro{color:#333}.filters,.more,.statusline button{display:none}.cards{display:block}.card{break-inside:avoid;box-shadow:none;margin:.5rem 0}}
+</style></head><body>
+<header><div class="wrap"><p class="byline">Shuai Wu · 武帅</p><h1>Ecology tool directory</h1>
+<p class="intro">Explore 143 tools for microbiome analysis, ecological modelling and field research. Search in English or Chinese.</p></div></header>
+<main class="wrap">
+<section class="filters" aria-label="Find tools">
+<label for="search">Search / 搜索<input id="search" type="search" placeholder="e.g. SEM, 差异丰度, XGBoost"></label>
+<label for="field">Field / 领域<select id="field"><option value="">All fields</option><option value="microbiome">Microbiome & communities</option><option value="models">Statistical modelling & machine learning</option><option value="ecology">Spatial & field ecology</option></select></label>
+<label for="task">Task / 任务<select id="task"><option value="">All tasks</option></select></label>
+<label for="env">Environment / 环境<select id="env"><option value="">All environments</option><option>Bioconductor</option><option>CLI</option><option>Cloud</option><option>Database</option><option>GIS</option><option>JavaScript</option><option>Python</option><option>QIIME 2</option><option>R</option></select></label></section>
+<div class="statusline"><p id="count" role="status" aria-live="polite">143 tools</p><button type="button" id="reset">Clear filters</button></div>
+<noscript><p>All entries are visible. Use your browser’s find command to search.</p></noscript>
+<div class="cards" id="results"><article class="card" data-field="microbiome" data-task="Import and organize" data-env="Python|CLI" data-keywords="导入 整理 数据结构 丰度表 ASV OTU 数据管理 ">
+      <div class="card-head"><span class="task">Import and organize</span><span class="ecosystem">CLI / Python</span></div>
+      <h2>QIIME 2 amplicon distribution</h2><p class="use">Use for interoperable command-line amplicon processing and handoff to downstream tools.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>QIIME 2 artifacts and sample metadata</dd><dt>Output</dt><dd>Provenance-tracked artifacts and visualizations</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://amplicon-docs.qiime2.org/" aria-label="Upstream source for QIIME 2 amplicon distribution">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="microbiome" data-task="Import and organize" data-env="R" data-keywords="导入 整理 数据结构 丰度表 ASV OTU 数据管理 ">
+      <div class="card-head"><span class="task">Import and organize</span><span class="ecosystem">R</span></div>
+      <h2>phyloseq</h2><p class="use">Use when a lab workflow already exchanges phyloseq objects.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Feature counts, taxonomy, sample metadata, optional tree</dd><dt>Output</dt><dd>Integrated microbiome experiment object</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://joey711.github.io/phyloseq/" aria-label="Upstream source for phyloseq">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="microbiome" data-task="Import and organize" data-env="R|Bioconductor" data-keywords="导入 整理 数据结构 丰度表 ASV OTU 数据管理 ">
+      <div class="card-head"><span class="task">Import and organize</span><span class="ecosystem">R / Bioconductor</span></div>
+      <h2>mia</h2><p class="use">Use for tree-aware experiments including linked assays and sample metadata.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>TreeSummarizedExperiment or convertible assay data</dd><dt>Output</dt><dd>Integrated assays, transformations and community summaries</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://microbiome.github.io/mia/" aria-label="Upstream source for mia">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="microbiome" data-task="Import and organize" data-env="Python|CLI" data-keywords="导入 整理 数据结构 丰度表 ASV OTU 数据管理 ">
+      <div class="card-head"><span class="task">Import and organize</span><span class="ecosystem">Python / CLI</span></div>
+      <h2>biom-format</h2><p class="use">Use to exchange feature tables and retain sample and taxon identifiers.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Count matrix with observation and sample annotations</dd><dt>Output</dt><dd>BIOM object or converted table</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://biom-format.org/" aria-label="Upstream source for biom-format">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="microbiome" data-task="Import and organize" data-env="Python" data-keywords="导入 整理 数据结构 丰度表 ASV OTU 数据管理 ">
+      <div class="card-head"><span class="task">Import and organize</span><span class="ecosystem">Python</span></div>
+      <h2>scikit-bio</h2><p class="use">Use for a Python pipeline spanning diversity calculations and distance-based tests.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Community matrices, phylogenetic trees and sample groups</dd><dt>Output</dt><dd>Distance matrices, ordinations and statistical tests</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://scikit.bio/" aria-label="Upstream source for scikit-bio">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="microbiome" data-task="Import and organize" data-env="R" data-keywords="导入 整理 数据结构 丰度表 ASV OTU 数据管理 ">
+      <div class="card-head"><span class="task">Import and organize</span><span class="ecosystem">R</span></div>
+      <h2>microeco</h2><p class="use">Use for an integrated R workflow linking composition, diversity and environmental metadata.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Abundance, taxonomy and sample tables</dd><dt>Output</dt><dd>Microbial community objects and downstream analyses</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://chiliubio.github.io/microeco/" aria-label="Upstream source for microeco">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="microbiome" data-task="Inspect composition" data-env="R" data-keywords="组成 群落组成 相对丰度 堆叠柱状图 ">
+      <div class="card-head"><span class="task">Inspect composition</span><span class="ecosystem">R</span></div>
+      <h2>microbiome</h2><p class="use">Use to characterize occurrence thresholds, transformations and the core microbiota.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>phyloseq object or abundance matrix</dd><dt>Output</dt><dd>Prevalence, abundance and core-community statistics</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://microbiome.github.io/microbiome/" aria-label="Upstream source for microbiome">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="microbiome" data-task="Inspect composition" data-env="R" data-keywords="组成 群落组成 相对丰度 堆叠柱状图 ">
+      <div class="card-head"><span class="task">Inspect composition</span><span class="ecosystem">R</span></div>
+      <h2>ampvis2</h2><p class="use">Use for comparing annotated assemblages across sample groups.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Feature, taxonomy and metadata tables</dd><dt>Output</dt><dd>Heatmaps, ordinations and abundance profiles</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://kasperskytte.github.io/ampvis2/" aria-label="Upstream source for ampvis2">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="microbiome" data-task="Inspect composition" data-env="R" data-keywords="组成 群落组成 相对丰度 堆叠柱状图 ">
+      <div class="card-head"><span class="task">Inspect composition</span><span class="ecosystem">R</span></div>
+      <h2>fantaxtic</h2><p class="use">Use when a figure should preserve parent-child relationships among taxonomic ranks.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Taxonomic ranks, feature abundances and sample groups</dd><dt>Output</dt><dd>Nested taxonomic composition plots</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://github.com/gmteunisse/fantaxtic" aria-label="Upstream source for fantaxtic">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="microbiome" data-task="Assess contamination" data-env="R|Bioconductor" data-keywords="去污染 污染物 空白 阴性对照 contaminant blank 阴性对照 污染识别 去污染">
+      <div class="card-head"><span class="task">Assess contamination</span><span class="ecosystem">R / Bioconductor</span></div>
+      <h2>decontam</h2><p class="use">Choose prevalence with appropriate controls or frequency with concentration data.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Feature counts with blanks and/or DNA concentration</dd><dt>Output</dt><dd>Feature-level contamination calls and scores</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://benjjneb.github.io/decontam/" aria-label="Upstream source for decontam">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="microbiome" data-task="Compositional transformations" data-env="R" data-keywords="组成型数据 组成数据 对数比 零值替代 clr ilr ">
+      <div class="card-head"><span class="task">Compositional transformations</span><span class="ecosystem">R</span></div>
+      <h2>compositions</h2><p class="use">Use for Aitchison geometry after explicitly deciding how to address zeros.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Positive compositional measurements</dd><dt>Output</dt><dd>Log-ratio coordinates, balances and compositional summaries</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/package=compositions" aria-label="Upstream source for compositions">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="microbiome" data-task="Compositional transformations" data-env="R" data-keywords="组成型数据 组成数据 对数比 零值替代 clr ilr ">
+      <div class="card-head"><span class="task">Compositional transformations</span><span class="ecosystem">R</span></div>
+      <h2>zCompositions</h2><p class="use">Use when the selected replacement model fits the mechanism producing zeros.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Compositional tables with zeros or missing values</dd><dt>Output</dt><dd>Imputed compositional tables</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/package=zCompositions" aria-label="Upstream source for zCompositions">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="microbiome" data-task="Compositional transformations" data-env="R|Bioconductor" data-keywords="组成型数据 组成数据 对数比 零值替代 clr ilr ">
+      <div class="card-head"><span class="task">Compositional transformations</span><span class="ecosystem">R / Bioconductor</span></div>
+      <h2>philr</h2><p class="use">Use to represent community differences as balances between related clades.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Feature counts and a rooted binary phylogenetic tree</dd><dt>Output</dt><dd>Phylogenetically defined log-ratio balances</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://bioconductor.org/packages/philr/" aria-label="Upstream source for philr">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="microbiome" data-task="Alpha diversity and coverage" data-env="R" data-keywords="alpha diversity α多样性 阿尔法多样性 丰富度 稀释曲线 覆盖度 PERMANOVA adonis adonis2 betadisper NMDS Bray Curtis 群落差异方差分析 置换方差分析">
+      <div class="card-head"><span class="task">Alpha diversity and coverage</span><span class="ecosystem">R</span></div>
+      <h2>vegan</h2><p class="use">Compare community composition or relate it to environmental gradients. Functions include metaMDS, envfit, dbrda and varpart.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Community matrix, optional environmental covariates and spatial predictors</dd><dt>Output</dt><dd>Diversity indices, NMDS, RDA/CCA/dbRDA, PERMANOVA, dispersion or variation partitions</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://vegandevs.github.io/vegan/" aria-label="Upstream source for vegan">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="microbiome" data-task="Alpha diversity and coverage" data-env="R" data-keywords="alpha diversity α多样性 阿尔法多样性 丰富度 稀释曲线 覆盖度 稀释曲线 rarefaction extrapolation coverage">
+      <div class="card-head"><span class="task">Alpha diversity and coverage</span><span class="ecosystem">R</span></div>
+      <h2>iNEXT</h2><p class="use">Use to compare diversity while accounting for differences in sampling completeness.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Species abundance or incidence-frequency data</dd><dt>Output</dt><dd>Coverage- or sample-size-based Hill diversity curves</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/package=iNEXT" aria-label="Upstream source for iNEXT">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="microbiome" data-task="Alpha diversity and coverage" data-env="R" data-keywords="alpha diversity α多样性 阿尔法多样性 丰富度 稀释曲线 覆盖度 ">
+      <div class="card-head"><span class="task">Alpha diversity and coverage</span><span class="ecosystem">R</span></div>
+      <h2>breakaway</h2><p class="use">Use to estimate unobserved richness and propagate estimation uncertainty.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Frequency-of-frequencies counts for individual samples</dd><dt>Output</dt><dd>Estimated richness and sampling uncertainty</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://adw96.github.io/breakaway/" aria-label="Upstream source for breakaway">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="microbiome" data-task="Alpha diversity and coverage" data-env="R" data-keywords="alpha diversity α多样性 阿尔法多样性 丰富度 稀释曲线 覆盖度 ">
+      <div class="card-head"><span class="task">Alpha diversity and coverage</span><span class="ecosystem">R</span></div>
+      <h2>DivNet</h2><p class="use">Use when diversity estimation should account for community network structure.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Taxon counts, covariates and replicate communities</dd><dt>Output</dt><dd>Model-based diversity estimates and uncertainty</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://github.com/adw96/DivNet" aria-label="Upstream source for DivNet">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="microbiome" data-task="Beta diversity and ordination" data-env="R" data-keywords="beta diversity β多样性 贝塔多样性 群落距离 排序 pcoa nmds ">
+      <div class="card-head"><span class="task">Beta diversity and ordination</span><span class="ecosystem">R</span></div>
+      <h2>betapart</h2><p class="use">Use to interpret mechanisms underlying differences in overall beta diversity.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Site-by-species presence/absence or abundance data</dd><dt>Output</dt><dd>Turnover and nestedness-resultant components or abundance-based partitions</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/package=betapart" aria-label="Upstream source for betapart">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="microbiome" data-task="Beta diversity and ordination" data-env="R" data-keywords="beta diversity β多样性 贝塔多样性 群落距离 排序 pcoa nmds ">
+      <div class="card-head"><span class="task">Beta diversity and ordination</span><span class="ecosystem">R</span></div>
+      <h2>GUniFrac</h2><p class="use">Use to compare communities at different emphases on abundant and rare lineages.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Community abundance table and matching rooted tree</dd><dt>Output</dt><dd>Generalized UniFrac distance matrices</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/package=GUniFrac" aria-label="Upstream source for GUniFrac">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="microbiome" data-task="Beta diversity and ordination" data-env="Python|QIIME 2" data-keywords="beta diversity β多样性 贝塔多样性 群落距离 排序 pcoa nmds ">
+      <div class="card-head"><span class="task">Beta diversity and ordination</span><span class="ecosystem">Python / QIIME 2</span></div>
+      <h2>gemelli</h2><p class="use">Use for sparse compositional data and repeated-measures designs supported by the method.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Feature table with optional repeated-measures metadata</dd><dt>Output</dt><dd>Robust compositional ordinations and longitudinal trajectories</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://github.com/biocore/gemelli" aria-label="Upstream source for gemelli">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="microbiome" data-task="Beta diversity and ordination" data-env="Python|QIIME 2" data-keywords="beta diversity β多样性 贝塔多样性 群落距离 排序 pcoa nmds ">
+      <div class="card-head"><span class="task">Beta diversity and ordination</span><span class="ecosystem">Python / QIIME 2</span></div>
+      <h2>EMPeror</h2><p class="use">Use to explore which covariates align with ordination patterns.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Ordination coordinates and sample metadata</dd><dt>Output</dt><dd>Interactive ordination visualization</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://biocore.github.io/emperor/" aria-label="Upstream source for EMPeror">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="microbiome" data-task="Differential abundance" data-env="R|Bioconductor" data-keywords="差异丰度 差异类群 差异分析 biomarker ancom-bc ancom-bc2 ancombc2">
+      <div class="card-head"><span class="task">Differential abundance</span><span class="ecosystem">R / Bioconductor</span></div>
+      <h2>ANCOMBC</h2><p class="use">Use for bias-corrected contrasts and models matching the design of the study.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Microbiome count table and sample covariates</dd><dt>Output</dt><dd>ANCOM-BC and ANCOM-BC2 differential abundance results</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://bioconductor.org/packages/ANCOMBC/" aria-label="Upstream source for ANCOMBC">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="microbiome" data-task="Differential abundance" data-env="R|Bioconductor" data-keywords="差异丰度 差异类群 差异分析 biomarker ">
+      <div class="card-head"><span class="task">Differential abundance</span><span class="ecosystem">R / Bioconductor</span></div>
+      <h2>ALDEx2</h2><p class="use">Use to examine compositional differential abundance while propagating sampling variation.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Integer counts and design information</dd><dt>Output</dt><dd>Log-ratio effect estimates and test results</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://bioconductor.org/packages/ALDEx2/" aria-label="Upstream source for ALDEx2">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="microbiome" data-task="Differential abundance" data-env="R|Bioconductor" data-keywords="差异丰度 差异类群 差异分析 biomarker ">
+      <div class="card-head"><span class="task">Differential abundance</span><span class="ecosystem">R / Bioconductor</span></div>
+      <h2>MaAsLin 3</h2><p class="use">Use for multivariable associations with design-appropriate fixed and random effects.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Feature abundance and sample covariates</dd><dt>Output</dt><dd>Abundance and prevalence association results</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://bioconductor.org/packages/maaslin3/" aria-label="Upstream source for MaAsLin 3">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="microbiome" data-task="Differential abundance" data-env="R" data-keywords="差异丰度 差异类群 差异分析 biomarker ">
+      <div class="card-head"><span class="task">Differential abundance</span><span class="ecosystem">R</span></div>
+      <h2>corncob</h2><p class="use">Use to examine covariate-dependent mean abundance and variability.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Feature counts, total reads and covariates</dd><dt>Output</dt><dd>Beta-binomial abundance and dispersion models</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://github.com/statdivlab/corncob" aria-label="Upstream source for corncob">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="microbiome" data-task="Differential abundance" data-env="R" data-keywords="差异丰度 差异类群 差异分析 biomarker ">
+      <div class="card-head"><span class="task">Differential abundance</span><span class="ecosystem">R</span></div>
+      <h2>LinDA (MicrobiomeStat)</h2><p class="use">Use for regression-based compositional inference with design covariates.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Feature abundances and covariates</dd><dt>Output</dt><dd>Bias-corrected feature-level associations</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/package=MicrobiomeStat" aria-label="Upstream source for LinDA (MicrobiomeStat)">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="microbiome" data-task="Differential abundance" data-env="R|Bioconductor" data-keywords="差异丰度 差异类群 差异分析 biomarker ">
+      <div class="card-head"><span class="task">Differential abundance</span><span class="ecosystem">R / Bioconductor</span></div>
+      <h2>DESeq2</h2><p class="use">Use if size-factor assumptions and sparsity handling suit the count data; report normalization choice.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Unnormalized integer counts and design matrix</dd><dt>Output</dt><dd>Negative-binomial contrasts and fold changes</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://bioconductor.org/packages/DESeq2/" aria-label="Upstream source for DESeq2">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="microbiome" data-task="Differential abundance" data-env="R|Bioconductor" data-keywords="差异丰度 差异类群 差异分析 biomarker ">
+      <div class="card-head"><span class="task">Differential abundance</span><span class="ecosystem">R / Bioconductor</span></div>
+      <h2>edgeR</h2><p class="use">Use for replicated count experiments when dispersion and library-size modeling are appropriate.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Unnormalized integer counts and biological design</dd><dt>Output</dt><dd>Count-model contrasts and dispersion estimates</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://bioconductor.org/packages/edgeR/" aria-label="Upstream source for edgeR">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="microbiome" data-task="Indicator taxa" data-env="R" data-keywords="指示种 指示类群 ">
+      <div class="card-head"><span class="task">Indicator taxa</span><span class="ecosystem">R</span></div>
+      <h2>indicspecies</h2><p class="use">Use to find taxa associated with one group or a combination of habitats.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Community data and ecological site groups</dd><dt>Output</dt><dd>Indicator values, multi-group associations and permutation tests</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/package=indicspecies" aria-label="Upstream source for indicspecies">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="microbiome" data-task="Differential abundance" data-env="R|Bioconductor" data-keywords="差异丰度 差异类群 差异分析 biomarker ">
+      <div class="card-head"><span class="task">Differential abundance</span><span class="ecosystem">R / Bioconductor</span></div>
+      <h2>benchdamic</h2><p class="use">Use to investigate sensitivity of detected associations to the chosen abundance method.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Count table with sample covariates</dd><dt>Output</dt><dd>Cross-method comparisons and concordance summaries</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://bioconductor.org/packages/benchdamic/" aria-label="Upstream source for benchdamic">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="microbiome" data-task="Network inference" data-env="R" data-keywords="网络 共现网络 关联网络 网络推断 cooccurrence co-occurrence ">
+      <div class="card-head"><span class="task">Network inference</span><span class="ecosystem">R</span></div>
+      <h2>SpiecEasi</h2><p class="use">Use to estimate conditional associations from compositional abundance data.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Microbial abundance table</dd><dt>Output</dt><dd>Sparse conditional association networks</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://github.com/zdk123/SpiecEasi" aria-label="Upstream source for SpiecEasi">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="microbiome" data-task="Network inference" data-env="R" data-keywords="网络 共现网络 关联网络 网络推断 cooccurrence co-occurrence ">
+      <div class="card-head"><span class="task">Network inference</span><span class="ecosystem">R</span></div>
+      <h2>SPRING</h2><p class="use">Use when many structural or sampling zeros complicate microbial association estimates.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Sparse quantitative or relative microbiome profiles</dd><dt>Output</dt><dd>Estimated partial-correlation networks</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://github.com/IrinaStatsLab/SPRING" aria-label="Upstream source for SPRING">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="microbiome" data-task="Network comparison" data-env="R" data-keywords="网络 共现网络 网络比较 ">
+      <div class="card-head"><span class="task">Network comparison</span><span class="ecosystem">R</span></div>
+      <h2>NetCoMi</h2><p class="use">Use to apply a documented analysis chain and compare group-specific network summaries.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Abundance tables or association estimates with grouping variables</dd><dt>Output</dt><dd>Network construction, comparison and visualization</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://netcomi.de/" aria-label="Upstream source for NetCoMi">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="microbiome" data-task="Feature association" data-env="R" data-keywords="特征关联 比例性 组成数据关联 ">
+      <div class="card-head"><span class="task">Feature association</span><span class="ecosystem">R</span></div>
+      <h2>propr</h2><p class="use">Use to compare proportionality between features in a compositional measurement system.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Relative abundance or other compositional features</dd><dt>Output</dt><dd>Feature proportionality metrics</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://github.com/tpq/propr" aria-label="Upstream source for propr">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="microbiome" data-task="Phylogenetic ecology" data-env="R" data-keywords="系统发育 谱系 系统发育多样性 ">
+      <div class="card-head"><span class="task">Phylogenetic ecology</span><span class="ecosystem">R</span></div>
+      <h2>ape</h2><p class="use">Use to check matching tips, manipulate trees and prepare phylogenetic analyses.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Newick trees, alignments or phylogenetic data</dd><dt>Output</dt><dd>Tree handling, distances and phylogenetic summaries</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/package=ape" aria-label="Upstream source for ape">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="microbiome" data-task="Phylogenetic ecology" data-env="R" data-keywords="系统发育 谱系 系统发育多样性 ">
+      <div class="card-head"><span class="task">Phylogenetic ecology</span><span class="ecosystem">R</span></div>
+      <h2>picante</h2><p class="use">Use to test lineage structure with an ecologically justified species pool.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Community matrix and phylogeny</dd><dt>Output</dt><dd>Phylogenetic diversity, MPD, MNTD and null-model results</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/package=picante" aria-label="Upstream source for picante">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="microbiome" data-task="Community assembly" data-env="R" data-keywords="群落构建 群落组装 群落装配 零模型 null model 群落构建 群落组装 群落装配">
+      <div class="card-head"><span class="task">Community assembly</span><span class="ecosystem">R</span></div>
+      <h2>iCAMP</h2><p class="use">Use for phylogenetic-bin null models when the study defines source pool and sampling design.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Community abundances, phylogeny and sample groups</dd><dt>Output</dt><dd>Bin-based estimates of community assembly process contributions</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/package=iCAMP" aria-label="Upstream source for iCAMP">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="microbiome" data-task="Community assembly" data-env="R" data-keywords="群落构建 群落组装 群落装配 零模型 null model ">
+      <div class="card-head"><span class="task">Community assembly</span><span class="ecosystem">R</span></div>
+      <h2>NST</h2><p class="use">Use to compare ecological stochasticity under an explicitly documented null model.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Taxon-by-site data, grouping and a specified null model</dd><dt>Output</dt><dd>Normalized stochasticity ratio estimates</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/package=NST" aria-label="Upstream source for NST">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="microbiome" data-task="Functional potential" data-env="Python|CLI" data-keywords="功能预测 功能潜力 扩增子功能预测 ">
+      <div class="card-head"><span class="task">Functional potential</span><span class="ecosystem">Python / CLI</span></div>
+      <h2>PICRUSt2</h2><p class="use">Use for phylogenetic prediction with reference coverage checks and explicit prediction labeling.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Marker sequences and abundances, usually 16S</dd><dt>Output</dt><dd>Predicted gene family and pathway profiles</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://github.com/picrust/picrust2" aria-label="Upstream source for PICRUSt2">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="microbiome" data-task="Functional traits" data-env="Database" data-keywords="功能性状 功能注释 真菌功能 guild ">
+      <div class="card-head"><span class="task">Functional traits</span><span class="ecosystem">Trait database</span></div>
+      <h2>FungalTraits</h2><p class="use">Use to join identified fungal taxa to a curated trait resource and record unmatched names.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Fungal taxonomic assignments</dd><dt>Output</dt><dd>Trait and ecological guild annotations</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://doi.org/10.1007/s13225-020-00466-2" aria-label="Upstream source for FungalTraits">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="microbiome" data-task="Functional traits" data-env="Python|Database" data-keywords="功能性状 功能注释 真菌功能 guild ">
+      <div class="card-head"><span class="task">Functional traits</span><span class="ecosystem">Python / database</span></div>
+      <h2>FUNGuild</h2><p class="use">Use to annotate fungal trophic modes, retaining confidence and unresolved assignments.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Fungal taxonomic annotations</dd><dt>Output</dt><dd>Taxon-based fungal guild assignments with confidence</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://github.com/UMNFuN/FUNGuild" aria-label="Upstream source for FUNGuild">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="microbiome" data-task="Taxon sharing and partitioning" data-env="R" data-keywords="群落共享 共有类群 交集 ">
+      <div class="card-head"><span class="task">Taxon sharing and partitioning</span><span class="ecosystem">R</span></div>
+      <h2>UpSetR</h2><p class="use">Use to compare feature sharing across many habitats or methods.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Set membership matrix for taxa, sites or contrasts</dd><dt>Output</dt><dd>Set intersection sizes and UpSet plots</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://github.com/hms-dbmi/UpSetR" aria-label="Upstream source for UpSetR">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="microbiome" data-task="Source mixtures" data-env="R" data-keywords="来源追踪 源解析 溯源 source tracking ">
+      <div class="card-head"><span class="task">Source mixtures</span><span class="ecosystem">R</span></div>
+      <h2>FEAST</h2><p class="use">Use when candidate source communities are sampled and mixtures have a plausible interpretation.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Source and sink microbial abundance profiles</dd><dt>Output</dt><dd>Estimated source mixture fractions</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://github.com/cozygene/FEAST" aria-label="Upstream source for FEAST">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="microbiome" data-task="Multivariate modeling" data-env="R" data-keywords="多变量建模 多元群落模型 ">
+      <div class="card-head"><span class="task">Multivariate modeling</span><span class="ecosystem">R</span></div>
+      <h2>mvabund</h2><p class="use">Use to fit multivariate abundance models and evaluate differential responses among species.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Multivariate species counts, sampling covariates and design</dd><dt>Output</dt><dd>Model-based community and species-level tests</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/package=mvabund" aria-label="Upstream source for mvabund">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="microbiome" data-task="Visualization and reporting" data-env="R|Bioconductor" data-keywords="绘图 可视化 热图 进化树 ">
+      <div class="card-head"><span class="task">Visualization and reporting</span><span class="ecosystem">R / Bioconductor</span></div>
+      <h2>ComplexHeatmap</h2><p class="use">Use to place community patterns alongside environmental and taxonomic annotations.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Feature matrices with row and column annotations</dd><dt>Output</dt><dd>Annotated heatmaps and aligned panels</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://jokergoo.github.io/ComplexHeatmap-reference/book/" aria-label="Upstream source for ComplexHeatmap">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="microbiome" data-task="Visualization and reporting" data-env="R|Bioconductor" data-keywords="绘图 可视化 热图 进化树 ">
+      <div class="card-head"><span class="task">Visualization and reporting</span><span class="ecosystem">R / Bioconductor</span></div>
+      <h2>ggtree</h2><p class="use">Use to map traits, clade membership or associations onto a phylogeny.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Phylogenetic trees and tip metadata</dd><dt>Output</dt><dd>Annotated phylogenetic tree graphics</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://bioconductor.org/packages/ggtree/" aria-label="Upstream source for ggtree">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="microbiome" data-task="Differential abundance" data-env="Python|CLI" data-keywords="差异丰度 差异类群 差异分析 biomarker ">
+      <div class="card-head"><span class="task">Differential abundance</span><span class="ecosystem">Python / CLI</span></div>
+      <h2>LEfSe</h2><p class="use">Use for exploratory class discrimination with a documented normalization and comparison design.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Features and categorical class or subclass labels</dd><dt>Output</dt><dd>Taxon rankings with LDA effect scores</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://github.com/SegataLab/lefse" aria-label="Upstream source for LEfSe">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="microbiome" data-task="Functional traits" data-env="Python|Database" data-keywords="功能性状 功能注释 真菌功能 guild ">
+      <div class="card-head"><span class="task">Functional traits</span><span class="ecosystem">Python / database</span></div>
+      <h2>FAPROTAX</h2><p class="use">Use to describe putative ecological functions and report which taxonomic assignments were covered.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Taxonomically annotated prokaryotic abundance table</dd><dt>Output</dt><dd>Taxon-derived ecological functional group profiles</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://pages.uoregon.edu/slouca/LoucaLab/archive/FAPROTAX/lib/php/index.php?section=Home" aria-label="Upstream source for FAPROTAX">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="microbiome" data-task="Functional profiles" data-env="Python|CLI" data-keywords="功能谱 通路 功能注释 ">
+      <div class="card-head"><span class="task">Functional profiles</span><span class="ecosystem">Python / CLI</span></div>
+      <h2>HUMAnN</h2><p class="use">Use when shotgun sequence evidence is available for comparing community functional potential.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Shotgun metagenomic reads and reference databases</dd><dt>Output</dt><dd>Gene-family and pathway abundance profiles</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://github.com/biobakery/humann" aria-label="Upstream source for HUMAnN">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="models" data-task="Structural equation modelling" data-env="R" data-keywords="结构方程 结构方程模型 路径分析 SEM path analysis structural equation modeling ">
+      <div class="card-head"><span class="task">Structural equation modelling</span><span class="ecosystem">R</span></div>
+      <h2>lavaan</h2><p class="use">Estimate a covariance-based SEM with latent or observed variables</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Observations and a prespecified path or measurement model</dd><dt>Output</dt><dd>Path coefficients, indirect effects and fit indices</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://lavaan.ugent.be/" aria-label="Upstream source for lavaan">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="models" data-task="Structural equation modelling" data-env="R" data-keywords="结构方程 结构方程模型 路径分析 SEM path analysis structural equation modeling ">
+      <div class="card-head"><span class="task">Structural equation modelling</span><span class="ecosystem">R</span></div>
+      <h2>piecewiseSEM</h2><p class="use">Combine supported generalized or mixed models into an ecological path model</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Response-specific component models</dd><dt>Output</dt><dd>Directed separation tests and path coefficients</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://jslefche.github.io/piecewiseSEM/" aria-label="Upstream source for piecewiseSEM">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="models" data-task="Structural equation modelling" data-env="R" data-keywords="结构方程 结构方程模型 路径分析 SEM path analysis structural equation modeling ">
+      <div class="card-head"><span class="task">Structural equation modelling</span><span class="ecosystem">R</span></div>
+      <h2>semTools</h2><p class="use">Extend measurement models or compare groups within lavaan</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Fitted lavaan models or simulation designs</dd><dt>Output</dt><dd>Reliability measures, invariance tests and SEM diagnostics</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/package=semTools" aria-label="Upstream source for semTools">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="models" data-task="Structural equation modelling" data-env="R" data-keywords="结构方程 结构方程模型 路径分析 SEM path analysis structural equation modeling ">
+      <div class="card-head"><span class="task">Structural equation modelling</span><span class="ecosystem">R</span></div>
+      <h2>semPlot</h2><p class="use">Communicate a specified SEM structure and its estimates</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Fitted SEM objects</dd><dt>Output</dt><dd>Path diagrams with estimated coefficients</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/package=semPlot" aria-label="Upstream source for semPlot">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="models" data-task="Causal design" data-env="R" data-keywords="因果推断 有向无环图 混杂 DAG ">
+      <div class="card-head"><span class="task">Causal design</span><span class="ecosystem">R</span></div>
+      <h2>dagitty</h2><p class="use">Make assumptions and potential confounding explicit before model fitting</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Causal graph and exposure/outcome definitions</dd><dt>Output</dt><dd>Adjustment sets and implied independences</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://www.dagitty.net/" aria-label="Upstream source for dagitty">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="models" data-task="Observational comparisons" data-env="R" data-keywords="观察性研究 倾向评分 匹配 平衡 ">
+      <div class="card-head"><span class="task">Observational comparisons</span><span class="ecosystem">R</span></div>
+      <h2>MatchIt</h2><p class="use">Design an observational comparison with covariate overlap</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Treatment labels and pretreatment covariates</dd><dt>Output</dt><dd>Matched units, weights and subclasses</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://kosukeimai.github.io/MatchIt/" aria-label="Upstream source for MatchIt">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="models" data-task="Observational comparisons" data-env="R" data-keywords="观察性研究 倾向评分 匹配 平衡 ">
+      <div class="card-head"><span class="task">Observational comparisons</span><span class="ecosystem">R</span></div>
+      <h2>cobalt</h2><p class="use">Check how comparable groups are after matching or weighting</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Covariates, treatment groups and weights or matches</dd><dt>Output</dt><dd>Balance diagnostics and plots</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://ngreifer.github.io/cobalt/" aria-label="Upstream source for cobalt">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="models" data-task="Mixed-effects models" data-env="R" data-keywords="混合效应 混合模型 随机效应 层级模型 glmm lmm ">
+      <div class="card-head"><span class="task">Mixed-effects models</span><span class="ecosystem">R</span></div>
+      <h2>lme4</h2><p class="use">Account for repeated sampling of sites or experiments</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Continuous, count or binary outcomes and group identifiers</dd><dt>Output</dt><dd>Fixed effects, random effects and predictions</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://lme4.github.io/lme4/" aria-label="Upstream source for lme4">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="models" data-task="Mixed-effects models" data-env="R" data-keywords="混合效应 混合模型 随机效应 层级模型 glmm lmm ">
+      <div class="card-head"><span class="task">Mixed-effects models</span><span class="ecosystem">R</span></div>
+      <h2>glmmTMB</h2><p class="use">Represent overdispersed counts or a specified excess-zero process</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Outcomes, covariates and group identifiers</dd><dt>Output</dt><dd>GLMM estimates with optional dispersion and zero-inflation models</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://glmmtmb.github.io/glmmTMB/" aria-label="Upstream source for glmmTMB">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="models" data-task="Mixed-effects models" data-env="R" data-keywords="混合效应 混合模型 随机效应 层级模型 glmm lmm ">
+      <div class="card-head"><span class="task">Mixed-effects models</span><span class="ecosystem">R</span></div>
+      <h2>nlme</h2><p class="use">Model within-unit serial dependence or heterogeneous variance</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Continuous repeated measurements with grouping or times</dd><dt>Output</dt><dd>Mixed models with variance and correlation structures</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/package=nlme" aria-label="Upstream source for nlme">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="models" data-task="Mixed-effects models" data-env="R" data-keywords="混合效应 混合模型 随机效应 层级模型 glmm lmm ">
+      <div class="card-head"><span class="task">Mixed-effects models</span><span class="ecosystem">R</span></div>
+      <h2>brms</h2><p class="use">Use Bayesian multilevel models with explicit priors and uncertainty</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Responses, formulas and priors</dd><dt>Output</dt><dd>Posterior draws and predictions for multilevel models</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://paulbuerkner.com/brms/" aria-label="Upstream source for brms">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="models" data-task="Hierarchical Bayesian models" data-env="R" data-keywords="贝叶斯 层级贝叶斯 mcmc bayes ">
+      <div class="card-head"><span class="task">Hierarchical Bayesian models</span><span class="ecosystem">R</span></div>
+      <h2>NIMBLE</h2><p class="use">Fit bespoke hierarchical ecological observation models</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Custom hierarchical model and observed data</dd><dt>Output</dt><dd>Posterior samples and configurable MCMC algorithms</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://r-nimble.org/" aria-label="Upstream source for NIMBLE">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="models" data-task="Hierarchical Bayesian models" data-env="Python" data-keywords="贝叶斯 层级贝叶斯 mcmc bayes ">
+      <div class="card-head"><span class="task">Hierarchical Bayesian models</span><span class="ecosystem">Python</span></div>
+      <h2>PyMC</h2><p class="use">Build Bayesian ecological models in a Python workflow</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Probabilistic model, priors and observations</dd><dt>Output</dt><dd>Posterior samples and predictive distributions</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://www.pymc.io/" aria-label="Upstream source for PyMC">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="models" data-task="Nonlinear responses" data-env="R" data-keywords="非线性响应 非线性 广义加性模型 GAM GAMM ">
+      <div class="card-head"><span class="task">Nonlinear responses</span><span class="ecosystem">R</span></div>
+      <h2>mgcv</h2><p class="use">Fit nonlinear climate gradients or interactions using GAMs</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Response and smooth covariates</dd><dt>Output</dt><dd>Penalized smooths, effective degrees of freedom and predictions</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/package=mgcv" aria-label="Upstream source for mgcv">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="models" data-task="Nonlinear responses" data-env="R" data-keywords="非线性响应 非线性 广义加性模型 GAM GAMM ">
+      <div class="card-head"><span class="task">Nonlinear responses</span><span class="ecosystem">R</span></div>
+      <h2>gratia</h2><p class="use">Describe where a fitted ecological gradient changes most rapidly</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Fitted mgcv models</dd><dt>Output</dt><dd>Smooth estimates, derivatives and uncertainty intervals</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://gavinsimpson.github.io/gratia/" aria-label="Upstream source for gratia">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="models" data-task="Nonlinear responses" data-env="R" data-keywords="非线性响应 非线性 广义加性模型 GAM GAMM 断点回归 生态阈值 阈值 breakpoint segmented regression">
+      <div class="card-head"><span class="task">Nonlinear responses</span><span class="ecosystem">R</span></div>
+      <h2>segmented</h2><p class="use">Quantify a prespecified piecewise-linear response to a gradient</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Fitted regression or ordered predictor with response</dd><dt>Output</dt><dd>Estimated slope changes and breakpoint intervals</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/package=segmented" aria-label="Upstream source for segmented">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="models" data-task="Thresholds and time series" data-env="R" data-keywords="生态阈值 拐点 突变点 变点 时间序列 breakpoint ">
+      <div class="card-head"><span class="task">Thresholds and time series</span><span class="ecosystem">R</span></div>
+      <h2>changepoint</h2><p class="use">Locate candidate shifts in a monitored time series</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Ordered univariate observations</dd><dt>Output</dt><dd>Estimated change points in a mean or variance</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/package=changepoint" aria-label="Upstream source for changepoint">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="models" data-task="Quantile regression" data-env="R" data-keywords="分位数回归 ">
+      <div class="card-head"><span class="task">Quantile regression</span><span class="ecosystem">R</span></div>
+      <h2>quantreg</h2><p class="use">Ask how environmental constraints vary along a response distribution</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Response and covariates</dd><dt>Output</dt><dd>Conditional quantile trends and intervals</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/package=quantreg" aria-label="Upstream source for quantreg">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="models" data-task="Event times" data-env="R" data-keywords="生存分析 事件时间 ">
+      <div class="card-head"><span class="task">Event times</span><span class="ecosystem">R</span></div>
+      <h2>survival</h2><p class="use">Analyze time to mortality, recovery or colonization with censoring</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Follow-up times, event indicators and covariates</dd><dt>Output</dt><dd>Survival curves and hazard model estimates</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/package=survival" aria-label="Upstream source for survival">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="models" data-task="Temporal models" data-env="R" data-keywords="时间序列 时序 状态空间模型 ">
+      <div class="card-head"><span class="task">Temporal models</span><span class="ecosystem">R</span></div>
+      <h2>MARSS</h2><p class="use">Separate process variation from observation error under a specified model</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>One or more ecological time series</dd><dt>Output</dt><dd>State-space parameter estimates and latent trajectories</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/package=MARSS" aria-label="Upstream source for MARSS">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="models" data-task="Meta-analysis" data-env="R" data-keywords="整合分析 元分析 荟萃分析 meta analysis 元分析 荟萃分析 meta regression 效应量">
+      <div class="card-head"><span class="task">Meta-analysis</span><span class="ecosystem">R</span></div>
+      <h2>metafor</h2><p class="use">Synthesize comparable effect sizes while accounting for study dependence</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Effect estimates, variances and moderators</dd><dt>Output</dt><dd>Random-effects or multilevel meta-analytic estimates</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://www.metafor-project.org/" aria-label="Upstream source for metafor">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="models" data-task="Meta-analysis" data-env="R" data-keywords="整合分析 元分析 荟萃分析 meta analysis ">
+      <div class="card-head"><span class="task">Meta-analysis</span><span class="ecosystem">R</span></div>
+      <h2>clubSandwich</h2><p class="use">Adjust inference for correlated effect sizes within studies</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Fitted model and independent cluster identifiers</dd><dt>Output</dt><dd>Cluster-robust uncertainty estimates and tests</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://jepusto.github.io/clubSandwich/" aria-label="Upstream source for clubSandwich">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="models" data-task="Model diagnostics" data-env="R" data-keywords="模型诊断 残差 过度离散 ">
+      <div class="card-head"><span class="task">Model diagnostics</span><span class="ecosystem">R</span></div>
+      <h2>DHARMa</h2><p class="use">Check model fit, dispersion and residual dependence</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Fitted supported regression or mixed model</dd><dt>Output</dt><dd>Simulation-based residuals and diagnostic tests</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/package=DHARMa" aria-label="Upstream source for DHARMa">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="models" data-task="Model diagnostics" data-env="R" data-keywords="模型诊断 残差 过度离散 ">
+      <div class="card-head"><span class="task">Model diagnostics</span><span class="ecosystem">R</span></div>
+      <h2>performance</h2><p class="use">Inspect assumptions and report comparable model summaries</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Fitted statistical models</dd><dt>Output</dt><dd>Diagnostic checks and fit statistics</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://easystats.github.io/performance/" aria-label="Upstream source for performance">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="models" data-task="Model contrasts" data-env="R" data-keywords="边际效应 边际均值 模型对比 ">
+      <div class="card-head"><span class="task">Model contrasts</span><span class="ecosystem">R</span></div>
+      <h2>emmeans</h2><p class="use">Report interpretable treatment comparisons or interaction contrasts</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Fitted model and requested grouping or covariate grid</dd><dt>Output</dt><dd>Estimated marginal means, contrasts and intervals</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://rvlenth.github.io/emmeans/" aria-label="Upstream source for emmeans">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="models" data-task="Model contrasts" data-env="R|Python" data-keywords="边际效应 边际均值 模型对比 ">
+      <div class="card-head"><span class="task">Model contrasts</span><span class="ecosystem">R / Python</span></div>
+      <h2>marginaleffects</h2><p class="use">Express model results on an ecologically meaningful response scale</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Fitted model and prediction grid</dd><dt>Output</dt><dd>Predictions, slopes, contrasts and uncertainty intervals</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://marginaleffects.com/" aria-label="Upstream source for marginaleffects">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="models" data-task="Bayesian diagnostics" data-env="R" data-keywords="贝叶斯诊断 后验检验 posterior ">
+      <div class="card-head"><span class="task">Bayesian diagnostics</span><span class="ecosystem">R</span></div>
+      <h2>bayesplot</h2><p class="use">Inspect sampling and how well simulated outcomes resemble data</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Posterior draws and observations</dd><dt>Output</dt><dd>Posterior predictive checks and MCMC diagnostics</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://mc-stan.org/bayesplot/" aria-label="Upstream source for bayesplot">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="models" data-task="Model comparison" data-env="R" data-keywords="模型比较 交叉验证 loo ">
+      <div class="card-head"><span class="task">Model comparison</span><span class="ecosystem">R</span></div>
+      <h2>loo</h2><p class="use">Compare Bayesian models using a defensible observational unit</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Pointwise log-likelihood draws</dd><dt>Output</dt><dd>Approximate leave-one-out predictive estimates and diagnostics</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://mc-stan.org/loo/" aria-label="Upstream source for loo">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="models" data-task="Penalized regression" data-env="R" data-keywords="正则化回归 惩罚回归 lasso ridge ">
+      <div class="card-head"><span class="task">Penalized regression</span><span class="ecosystem">R</span></div>
+      <h2>glmnet</h2><p class="use">Use ridge or elastic-net models for correlated predictors</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Design matrix and outcome</dd><dt>Output</dt><dd>Regularization path and cross-validated predictions</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://glmnet.stanford.edu/" aria-label="Upstream source for glmnet">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="models" data-task="Random forests" data-env="R" data-keywords="随机森林 rf 随机森林 random forest RF">
+      <div class="card-head"><span class="task">Random forests</span><span class="ecosystem">R</span></div>
+      <h2>ranger</h2><p class="use">Fit fast forest models for regression, classification or survival</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Feature matrix and outcome</dd><dt>Output</dt><dd>Random forest predictions and importance scores</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/package=ranger" aria-label="Upstream source for ranger">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="models" data-task="Gradient boosting" data-env="R|Python" data-keywords="梯度提升 梯度提升树 增强树 机器学习 boosting xgb extreme gradient boosting 极端梯度提升">
+      <div class="card-head"><span class="task">Gradient boosting</span><span class="ecosystem">R / Python</span></div>
+      <h2>XGBoost</h2><p class="use">Predict nonlinear ecological responses from tabular variables</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Feature matrix and outcome</dd><dt>Output</dt><dd>Boosted-tree predictions and fitted model</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://xgboost.readthedocs.io/" aria-label="Upstream source for XGBoost">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="models" data-task="Gradient boosting" data-env="R|Python" data-keywords="梯度提升 梯度提升树 增强树 机器学习 boosting ">
+      <div class="card-head"><span class="task">Gradient boosting</span><span class="ecosystem">R / Python</span></div>
+      <h2>LightGBM</h2><p class="use">Fit tree ensembles on large tabular datasets</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Tabular features and response</dd><dt>Output</dt><dd>Gradient-boosted decision-tree predictions</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://lightgbm.readthedocs.io/" aria-label="Upstream source for LightGBM">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="models" data-task="Gradient boosting" data-env="R|Python" data-keywords="梯度提升 梯度提升树 增强树 机器学习 boosting ">
+      <div class="card-head"><span class="task">Gradient boosting</span><span class="ecosystem">R / Python</span></div>
+      <h2>CatBoost</h2><p class="use">Model nonlinear responses with categorical site or habitat descriptors</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Tabular covariates, optional categorical predictors and response</dd><dt>Output</dt><dd>Tree ensemble predictions</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://catboost.ai/" aria-label="Upstream source for CatBoost">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="models" data-task="Machine learning workflows" data-env="Python" data-keywords="机器学习 建模流程 ">
+      <div class="card-head"><span class="task">Machine learning workflows</span><span class="ecosystem">Python</span></div>
+      <h2>scikit-learn</h2><p class="use">Compose preprocessing and model selection within the training folds</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Features, targets and optional group identifiers</dd><dt>Output</dt><dd>Fitted pipelines, resampling estimates and predictions</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://scikit-learn.org/stable/" aria-label="Upstream source for scikit-learn">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="models" data-task="Machine learning workflows" data-env="R" data-keywords="机器学习 建模流程 ">
+      <div class="card-head"><span class="task">Machine learning workflows</span><span class="ecosystem">R</span></div>
+      <h2>tidymodels</h2><p class="use">Compare R modelling workflows on shared splits</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Data, feature recipe, candidate models and resamples</dd><dt>Output</dt><dd>Tuned pipelines and resampling results</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://www.tidymodels.org/" aria-label="Upstream source for tidymodels">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="models" data-task="Machine learning workflows" data-env="R" data-keywords="机器学习 建模流程 ">
+      <div class="card-head"><span class="task">Machine learning workflows</span><span class="ecosystem">R</span></div>
+      <h2>mlr3</h2><p class="use">Benchmark multiple estimators under one explicit evaluation design</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Learning task, learner definitions and resampling design</dd><dt>Output</dt><dd>Benchmark results, parameter estimates and predictions</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://mlr3.mlr-org.com/" aria-label="Upstream source for mlr3">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="models" data-task="Hyperparameter tuning" data-env="Python" data-keywords="调参 超参数优化 ">
+      <div class="card-head"><span class="task">Hyperparameter tuning</span><span class="ecosystem">Python</span></div>
+      <h2>Optuna</h2><p class="use">Optimize an ecological predictor using only training folds</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Objective function and candidate hyperparameter ranges</dd><dt>Output</dt><dd>Trial history and selected parameter settings</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://optuna.org/" aria-label="Upstream source for Optuna">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="models" data-task="Grouped validation" data-env="R" data-keywords="分组交叉验证 分组验证 留出站点 ">
+      <div class="card-head"><span class="task">Grouped validation</span><span class="ecosystem">R</span></div>
+      <h2>rsample</h2><p class="use">Hold out entire sampling groups or future time periods</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Tables with site, study, time or other group identifiers</dd><dt>Output</dt><dd>Train/test partitions and resampling objects</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://rsample.tidymodels.org/" aria-label="Upstream source for rsample">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="models" data-task="Spatial validation" data-env="R" data-keywords="空间验证 空间交叉验证 空间分块 spatial cross validation ">
+      <div class="card-head"><span class="task">Spatial validation</span><span class="ecosystem">R</span></div>
+      <h2>blockCV</h2><p class="use">Evaluate transfer to spatially separated locations</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Georeferenced observations and optional raster predictors</dd><dt>Output</dt><dd>Spatially or environmentally separated folds</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://github.com/rvalavi/blockCV" aria-label="Upstream source for blockCV">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="models" data-task="Spatial validation" data-env="R" data-keywords="空间验证 空间交叉验证 空间分块 spatial cross validation ">
+      <div class="card-head"><span class="task">Spatial validation</span><span class="ecosystem">R</span></div>
+      <h2>spatialsample</h2><p class="use">Build location-aware resampling for a tidymodels workflow</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Spatial observations and a resampling scheme</dd><dt>Output</dt><dd>Spatial cross-validation folds</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://spatialsample.tidymodels.org/" aria-label="Upstream source for spatialsample">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="models" data-task="Predictive metrics" data-env="R" data-keywords="预测性能 模型指标 ">
+      <div class="card-head"><span class="task">Predictive metrics</span><span class="ecosystem">R</span></div>
+      <h2>yardstick</h2><p class="use">Define common regression or classification metrics across held-out folds</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Observed outcomes and model predictions</dd><dt>Output</dt><dd>Prediction metrics and performance summaries</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://yardstick.tidymodels.org/" aria-label="Upstream source for yardstick">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="models" data-task="Model interpretation" data-env="Python" data-keywords="模型解释 可解释机器学习 变量重要性 特征重要性 Shapley shap值 夏普利">
+      <div class="card-head"><span class="task">Model interpretation</span><span class="ecosystem">Python</span></div>
+      <h2>SHAP</h2><p class="use">Describe contributions to a model prediction under a specified background</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Fitted prediction model and feature matrix</dd><dt>Output</dt><dd>Feature contributions and explanation plots</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://shap.readthedocs.io/" aria-label="Upstream source for SHAP">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="models" data-task="Model interpretation" data-env="R|Python" data-keywords="模型解释 可解释机器学习 变量重要性 特征重要性 ">
+      <div class="card-head"><span class="task">Model interpretation</span><span class="ecosystem">R / Python</span></div>
+      <h2>DALEX</h2><p class="use">Compare explanations across different model families</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Model, evaluation data and prediction interface</dd><dt>Output</dt><dd>Permutation importance and prediction profiles</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://github.com/ModelOriented/DALEX" aria-label="Upstream source for DALEX">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="models" data-task="Model interpretation" data-env="R" data-keywords="模型解释 可解释机器学习 变量重要性 特征重要性 ">
+      <div class="card-head"><span class="task">Model interpretation</span><span class="ecosystem">R</span></div>
+      <h2>iml</h2><p class="use">Inspect how fitted ecological predictions depend on individual predictors</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Predictor object and feature data</dd><dt>Output</dt><dd>Feature effects, permutation importance and local explanations</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://giuseppec.github.io/iml/" aria-label="Upstream source for iml">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="models" data-task="Model interpretation" data-env="R" data-keywords="模型解释 可解释机器学习 变量重要性 特征重要性 ">
+      <div class="card-head"><span class="task">Model interpretation</span><span class="ecosystem">R</span></div>
+      <h2>vip</h2><p class="use">Compare model-based or permutation importance under consistent evaluation</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Fitted models and evaluation data</dd><dt>Output</dt><dd>Variable importance summaries and plots</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://bgreenwell.github.io/vip/" aria-label="Upstream source for vip">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="ecology" data-task="Spatial data and GIS" data-env="R" data-keywords="空间分析 地理信息 GIS 栅格 矢量 制图 空间数据 ">
+      <div class="card-head"><span class="task">Spatial data and GIS</span><span class="ecosystem">R</span></div>
+      <h2>sf</h2><p class="use">Align soil cores or survey plots with boundaries.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Vector geometries and coordinates</dd><dt>Output</dt><dd>Projected features, overlays and spatial joins</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/package=sf" aria-label="Upstream source for sf">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="ecology" data-task="Spatial data and GIS" data-env="R" data-keywords="空间分析 地理信息 GIS 栅格 矢量 制图 空间数据 ">
+      <div class="card-head"><span class="task">Spatial data and GIS</span><span class="ecosystem">R</span></div>
+      <h2>terra</h2><p class="use">Sample gridded environmental predictors at field sites.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Gridded or vector environmental layers</dd><dt>Output</dt><dd>Cropped, resampled or extracted raster values</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/package=terra" aria-label="Upstream source for terra">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="ecology" data-task="Spatial data and GIS" data-env="R" data-keywords="空间分析 地理信息 GIS 栅格 矢量 制图 空间数据 ">
+      <div class="card-head"><span class="task">Spatial data and GIS</span><span class="ecosystem">R</span></div>
+      <h2>stars</h2><p class="use">Retain time and depth while processing environmental grids.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Gridded, time-indexed or multidimensional arrays</dd><dt>Output</dt><dd>Spatial data cubes with indexed dimensions</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/package=stars" aria-label="Upstream source for stars">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="ecology" data-task="Spatial data and GIS" data-env="R" data-keywords="空间分析 地理信息 GIS 栅格 矢量 制图 空间数据 ">
+      <div class="card-head"><span class="task">Spatial data and GIS</span><span class="ecosystem">R</span></div>
+      <h2>exactextractr</h2><p class="use">Obtain catchment or plot means when grid cells cross boundaries.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Raster values and polygons</dd><dt>Output</dt><dd>Coverage-weighted polygon summaries</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/package=exactextractr" aria-label="Upstream source for exactextractr">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="ecology" data-task="Spatial data and GIS" data-env="R" data-keywords="空间分析 地理信息 GIS 栅格 矢量 制图 空间数据 Moran&#x27;s I 莫兰指数 空间自相关">
+      <div class="card-head"><span class="task">Spatial data and GIS</span><span class="ecosystem">R</span></div>
+      <h2>spdep</h2><p class="use">Check whether nearby sites have similar values or residuals.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Spatial geometries, site values and a neighbor definition</dd><dt>Output</dt><dd>Spatial weights, autocorrelation statistics</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/package=spdep" aria-label="Upstream source for spdep">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="ecology" data-task="Spatial data and GIS" data-env="R" data-keywords="空间分析 地理信息 GIS 栅格 矢量 制图 空间数据 ">
+      <div class="card-head"><span class="task">Spatial data and GIS</span><span class="ecosystem">R</span></div>
+      <h2>gstat</h2><p class="use">Interpolate a soil property after inspecting its spatial structure.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Georeferenced observations and prediction locations</dd><dt>Output</dt><dd>Variograms, kriging predictions and variances</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/package=gstat" aria-label="Upstream source for gstat">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="ecology" data-task="Spatial data and GIS" data-env="R" data-keywords="空间分析 地理信息 GIS 栅格 矢量 制图 空间数据 ">
+      <div class="card-head"><span class="task">Spatial data and GIS</span><span class="ecosystem">R</span></div>
+      <h2>spatstat</h2><p class="use">Test clustering of trees or organisms while respecting survey extent.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Point observations and an observation window</dd><dt>Output</dt><dd>Point-pattern summaries and fitted point-process models</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/package=spatstat" aria-label="Upstream source for spatstat">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="ecology" data-task="Spatial data and GIS" data-env="R" data-keywords="空间分析 地理信息 GIS 栅格 矢量 制图 空间数据 ">
+      <div class="card-head"><span class="task">Spatial data and GIS</span><span class="ecosystem">R</span></div>
+      <h2>landscapemetrics</h2><p class="use">Quantify habitat fragmentation around plots.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Categorical land-cover raster</dd><dt>Output</dt><dd>Patch, class and landscape metrics</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/package=landscapemetrics" aria-label="Upstream source for landscapemetrics">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="ecology" data-task="Spatial data and GIS" data-env="R" data-keywords="空间分析 地理信息 GIS 栅格 矢量 制图 空间数据 ">
+      <div class="card-head"><span class="task">Spatial data and GIS</span><span class="ecosystem">R</span></div>
+      <h2>tmap</h2><p class="use">Map study coverage or a spatial prediction with a legend.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Spatial features, attributes and map design</dd><dt>Output</dt><dd>Thematic maps for print and interactive use</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/package=tmap" aria-label="Upstream source for tmap">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="ecology" data-task="Environmental data and remote sensing" data-env="R" data-keywords="遥感 环境变量 气候数据 环境协变量 卫星数据 ">
+      <div class="card-head"><span class="task">Environmental data and remote sensing</span><span class="ecosystem">R</span></div>
+      <h2>geodata</h2><p class="use">Retrieve a documented WorldClim or land-cover layer for a study region.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Country, coordinates or environmental product selection</dd><dt>Output</dt><dd>Downloaded spatial or climate layers</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/package=geodata" aria-label="Upstream source for geodata">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="ecology" data-task="Environmental data and remote sensing" data-env="R" data-keywords="遥感 环境变量 气候数据 环境协变量 卫星数据 ">
+      <div class="card-head"><span class="task">Environmental data and remote sensing</span><span class="ecosystem">R</span></div>
+      <h2>climateR</h2><p class="use">Subset a distributed environmental product to a study area.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Area of interest and a supported climate dataset</dd><dt>Output</dt><dd>Climate data subset for a geographic region</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://github.com/mikejohnson51/climateR" aria-label="Upstream source for climateR">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="ecology" data-task="Environmental data and remote sensing" data-env="R" data-keywords="遥感 环境变量 气候数据 环境协变量 卫星数据 ">
+      <div class="card-head"><span class="task">Environmental data and remote sensing</span><span class="ecosystem">R</span></div>
+      <h2>rstac</h2><p class="use">Locate Earth observation scenes and assets for a defined area and date range.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Catalog endpoint, time window and spatial extent</dd><dt>Output</dt><dd>Spatiotemporal Asset Catalog search results and asset references</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/package=rstac" aria-label="Upstream source for rstac">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="ecology" data-task="Environmental data and remote sensing" data-env="R" data-keywords="遥感 环境变量 气候数据 环境协变量 卫星数据 ">
+      <div class="card-head"><span class="task">Environmental data and remote sensing</span><span class="ecosystem">R</span></div>
+      <h2>sits</h2><p class="use">Use seasonal information when mapping land cover.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Satellite imagery or a data cube and reference samples</dd><dt>Output</dt><dd>Land-cover classifications from image time series</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/package=sits" aria-label="Upstream source for sits">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="ecology" data-task="Environmental data and remote sensing" data-env="R" data-keywords="遥感 环境变量 气候数据 环境协变量 卫星数据 ">
+      <div class="card-head"><span class="task">Environmental data and remote sensing</span><span class="ecosystem">R</span></div>
+      <h2>gdalcubes</h2><p class="use">Aggregate image collections to a shared grid and time step.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Indexed Earth observation scenes and cube dimensions</dd><dt>Output</dt><dd>Regular gridded space-time data cube</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/package=gdalcubes" aria-label="Upstream source for gdalcubes">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="ecology" data-task="Environmental data and remote sensing" data-env="R" data-keywords="遥感 环境变量 气候数据 环境协变量 卫星数据 ERA5 ERA5-Land 哥白尼 气候再分析">
+      <div class="card-head"><span class="task">Environmental data and remote sensing</span><span class="ecosystem">R</span></div>
+      <h2>ecmwfr</h2><p class="use">Script repeatable climate-data requests with an existing account.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Copernicus or ECMWF dataset query and credentials</dd><dt>Output</dt><dd>Retrieved climate reanalysis files</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/package=ecmwfr" aria-label="Upstream source for ecmwfr">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="ecology" data-task="Occurrence data and taxonomy" data-env="R" data-keywords="物种分布记录 物种出现记录 物种名 分类学 坐标清洗 ">
+      <div class="card-head"><span class="task">Occurrence data and taxonomy</span><span class="ecosystem">R</span></div>
+      <h2>rgbif</h2><p class="use">Find georeferenced public biodiversity records.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Species name, taxon key or GBIF query</dd><dt>Output</dt><dd>Occurrence records and metadata</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/package=rgbif" aria-label="Upstream source for rgbif">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="ecology" data-task="Occurrence data and taxonomy" data-env="R" data-keywords="物种分布记录 物种出现记录 物种名 分类学 坐标清洗 ">
+      <div class="card-head"><span class="task">Occurrence data and taxonomy</span><span class="ecosystem">R</span></div>
+      <h2>CoordinateCleaner</h2><p class="use">Screen records for geographic artifacts before range modeling.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Occurrence coordinates and identifiers</dd><dt>Output</dt><dd>Flags for suspect coordinates and spatial outliers</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/package=CoordinateCleaner" aria-label="Upstream source for CoordinateCleaner">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="ecology" data-task="Occurrence data and taxonomy" data-env="R" data-keywords="物种分布记录 物种出现记录 物种名 分类学 坐标清洗 ">
+      <div class="card-head"><span class="task">Occurrence data and taxonomy</span><span class="ecosystem">R</span></div>
+      <h2>taxize</h2><p class="use">Resolve names against a named taxonomy service.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Scientific names and selected taxonomy provider</dd><dt>Output</dt><dd>Matched taxon identifiers and classifications</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/package=taxize" aria-label="Upstream source for taxize">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="ecology" data-task="Occurrence data and taxonomy" data-env="R" data-keywords="物种分布记录 物种出现记录 物种名 分类学 坐标清洗 ">
+      <div class="card-head"><span class="task">Occurrence data and taxonomy</span><span class="ecosystem">R</span></div>
+      <h2>WorldFlora</h2><p class="use">Resolve historical plant spellings or synonyms while retaining original names.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Plant names and a dated World Flora Online backbone</dd><dt>Output</dt><dd>Candidate plant-name matches and accepted taxa</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/package=WorldFlora" aria-label="Upstream source for WorldFlora">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="ecology" data-task="Occurrence data and taxonomy" data-env="R" data-keywords="物种分布记录 物种出现记录 物种名 分类学 坐标清洗 ">
+      <div class="card-head"><span class="task">Occurrence data and taxonomy</span><span class="ecosystem">R</span></div>
+      <h2>rredlist</h2><p class="use">Link taxa to a documented conservation assessment.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>IUCN Red List API query and key</dd><dt>Output</dt><dd>Assessment and taxon records</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/package=rredlist" aria-label="Upstream source for rredlist">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="ecology" data-task="Occurrence data and taxonomy" data-env="R" data-keywords="物种分布记录 物种出现记录 物种名 分类学 坐标清洗 ">
+      <div class="card-head"><span class="task">Occurrence data and taxonomy</span><span class="ecosystem">R</span></div>
+      <h2>rotl</h2><p class="use">Construct an initial phylogeny for an ecological comparison.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Taxon names or Open Tree identifiers</dd><dt>Output</dt><dd>Taxon matches and induced phylogenies</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/package=rotl" aria-label="Upstream source for rotl">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="ecology" data-task="Occurrence data and taxonomy" data-env="R" data-keywords="物种分布记录 物种出现记录 物种名 分类学 坐标清洗 ">
+      <div class="card-head"><span class="task">Occurrence data and taxonomy</span><span class="ecosystem">R</span></div>
+      <h2>rinat</h2><p class="use">Explore community science observations and sampling coverage.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>iNaturalist taxon, place or time query</dd><dt>Output</dt><dd>Observation records with metadata</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/package=rinat" aria-label="Upstream source for rinat">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="ecology" data-task="Traits and comparative ecology" data-env="R" data-keywords="性状 功能多样性 比较生态学 系统发育 ">
+      <div class="card-head"><span class="task">Traits and comparative ecology</span><span class="ecosystem">R</span></div>
+      <h2>FD</h2><p class="use">Summarize how species traits are distributed among communities.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Species trait table and site abundances</dd><dt>Output</dt><dd>Functional diversity indices and community-weighted means</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/package=FD" aria-label="Upstream source for FD">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="ecology" data-task="Traits and comparative ecology" data-env="R" data-keywords="性状 功能多样性 比较生态学 系统发育 ">
+      <div class="card-head"><span class="task">Traits and comparative ecology</span><span class="ecosystem">R</span></div>
+      <h2>mFD</h2><p class="use">Check the quality of trait spaces used for functional diversity.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Species traits, site assemblages and optional abundances</dd><dt>Output</dt><dd>Functional spaces, indices and diagnostics</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/package=mFD" aria-label="Upstream source for mFD">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="ecology" data-task="Traits and comparative ecology" data-env="R" data-keywords="性状 功能多样性 比较生态学 系统发育 ">
+      <div class="card-head"><span class="task">Traits and comparative ecology</span><span class="ecosystem">R</span></div>
+      <h2>phytools</h2><p class="use">Investigate trait differences while preserving shared ancestry.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Phylogenetic tree and continuous or discrete traits</dd><dt>Output</dt><dd>Trait evolution analyses and ancestral reconstructions</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/package=phytools" aria-label="Upstream source for phytools">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="ecology" data-task="Traits and comparative ecology" data-env="R" data-keywords="性状 功能多样性 比较生态学 系统发育 ">
+      <div class="card-head"><span class="task">Traits and comparative ecology</span><span class="ecosystem">R</span></div>
+      <h2>caper</h2><p class="use">Account for evolutionary dependence in a species-level model.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Matched trait table and species phylogeny</dd><dt>Output</dt><dd>Phylogenetic comparative regressions and diagnostics</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/package=caper" aria-label="Upstream source for caper">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="ecology" data-task="Traits and comparative ecology" data-env="R" data-keywords="性状 功能多样性 比较生态学 系统发育 ">
+      <div class="card-head"><span class="task">Traits and comparative ecology</span><span class="ecosystem">R</span></div>
+      <h2>pez</h2><p class="use">Ask how species relatedness varies across sites.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Community matrix, traits and phylogeny</dd><dt>Output</dt><dd>Phylogenetic community structure summaries</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/package=pez" aria-label="Upstream source for pez">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="ecology" data-task="Field sampling and population ecology" data-env="R" data-keywords="野外采样 野外调查 种群生态学 占域模型 检测概率 栖息地 不完全检测 occupancy">
+      <div class="card-head"><span class="task">Field sampling and population ecology</span><span class="ecosystem">R</span></div>
+      <h2>unmarked</h2><p class="use">Estimate occupancy when surveys can miss present species.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Repeated detections or counts and survey covariates</dd><dt>Output</dt><dd>Detection-adjusted occupancy or abundance models</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/package=unmarked" aria-label="Upstream source for unmarked">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="ecology" data-task="Field sampling and population ecology" data-env="R" data-keywords="野外采样 野外调查 种群生态学 占域模型 检测概率 栖息地 ">
+      <div class="card-head"><span class="task">Field sampling and population ecology</span><span class="ecosystem">R</span></div>
+      <h2>Distance</h2><p class="use">Analyze line- or point-transect distance sampling.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Distances to detected individuals or clusters and effort</dd><dt>Output</dt><dd>Detection functions and density estimates</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/package=Distance" aria-label="Upstream source for Distance">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="ecology" data-task="Field sampling and population ecology" data-env="R" data-keywords="野外采样 野外调查 种群生态学 占域模型 检测概率 栖息地 ">
+      <div class="card-head"><span class="task">Field sampling and population ecology</span><span class="ecosystem">R</span></div>
+      <h2>secr</h2><p class="use">Estimate density from repeated identifiable captures.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Spatial capture histories, trap coordinates and effort</dd><dt>Output</dt><dd>Spatially explicit density estimates</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/package=secr" aria-label="Upstream source for secr">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="ecology" data-task="Field sampling and population ecology" data-env="R" data-keywords="野外采样 野外调查 种群生态学 占域模型 检测概率 栖息地 ">
+      <div class="card-head"><span class="task">Field sampling and population ecology</span><span class="ecosystem">R</span></div>
+      <h2>camtrapR</h2><p class="use">Relate wildlife detections to when a camera was operating.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Camera deployment records and annotated detections</dd><dt>Output</dt><dd>Effort tables, detection histories and model inputs</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/package=camtrapR" aria-label="Upstream source for camtrapR">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="ecology" data-task="Field sampling and population ecology" data-env="R" data-keywords="野外采样 野外调查 种群生态学 占域模型 检测概率 栖息地 ">
+      <div class="card-head"><span class="task">Field sampling and population ecology</span><span class="ecosystem">R</span></div>
+      <h2>ctmm</h2><p class="use">Estimate home range from irregular time-stamped tracking data.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Timestamped animal tracks and location error information</dd><dt>Output</dt><dd>Movement models and autocorrelated home ranges</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/package=ctmm" aria-label="Upstream source for ctmm">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="ecology" data-task="Field sampling and population ecology" data-env="R" data-keywords="野外采样 野外调查 种群生态学 占域模型 检测概率 栖息地 ">
+      <div class="card-head"><span class="task">Field sampling and population ecology</span><span class="ecosystem">R</span></div>
+      <h2>amt</h2><p class="use">Compare used and available steps in movement studies.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Locations and timestamps, optional environmental covariates</dd><dt>Output</dt><dd>Movement steps and habitat-selection estimates</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/package=amt" aria-label="Upstream source for amt">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="ecology" data-task="Field sampling and population ecology" data-env="R" data-keywords="野外采样 野外调查 种群生态学 占域模型 检测概率 栖息地 ">
+      <div class="card-head"><span class="task">Field sampling and population ecology</span><span class="ecosystem">R</span></div>
+      <h2>popbio</h2><p class="use">Inspect contributions of life stages to population change.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Vital-rate observations or a stage projection matrix</dd><dt>Output</dt><dd>Population growth rates, sensitivities and elasticities</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/package=popbio" aria-label="Upstream source for popbio">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="ecology" data-task="Distribution and conservation" data-env="R" data-keywords="物种分布模型 生态位 保护规划 SDM habitat suitability 生态位模型 物种分布预测">
+      <div class="card-head"><span class="task">Distribution and conservation</span><span class="ecosystem">R</span></div>
+      <h2>biomod2</h2><p class="use">Compare multiple models of environmental suitability.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Species observations and environmental predictors</dd><dt>Output</dt><dd>Fitted and projected species distribution ensembles</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/package=biomod2" aria-label="Upstream source for biomod2">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="ecology" data-task="Distribution and conservation" data-env="R" data-keywords="物种分布模型 生态位 保护规划 SDM habitat suitability ">
+      <div class="card-head"><span class="task">Distribution and conservation</span><span class="ecosystem">R</span></div>
+      <h2>ENMeval</h2><p class="use">Select Maxent-style model complexity with explicit partitions.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Occurrence/background points, predictors and tuning grid</dd><dt>Output</dt><dd>Partitioned model evaluation and tuning summaries</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/package=ENMeval" aria-label="Upstream source for ENMeval">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="ecology" data-task="Distribution and conservation" data-env="R" data-keywords="物种分布模型 生态位 保护规划 SDM habitat suitability ">
+      <div class="card-head"><span class="task">Distribution and conservation</span><span class="ecosystem">R</span></div>
+      <h2>maxnet</h2><p class="use">Fit presence-background species distribution models in R.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Presence/background labels and environmental predictors</dd><dt>Output</dt><dd>Regularized maximum-entropy model and predictions</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/package=maxnet" aria-label="Upstream source for maxnet">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="ecology" data-task="Distribution and conservation" data-env="R" data-keywords="物种分布模型 生态位 保护规划 SDM habitat suitability ">
+      <div class="card-head"><span class="task">Distribution and conservation</span><span class="ecosystem">R</span></div>
+      <h2>ecospat</h2><p class="use">Compare realized environmental niches between regions.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Occurrences for species or regions and environmental data</dd><dt>Output</dt><dd>Niche overlap and niche-dynamics statistics</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/package=ecospat" aria-label="Upstream source for ecospat">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="ecology" data-task="Distribution and conservation" data-env="R" data-keywords="物种分布模型 生态位 保护规划 SDM habitat suitability ">
+      <div class="card-head"><span class="task">Distribution and conservation</span><span class="ecosystem">R</span></div>
+      <h2>prioritizr</h2><p class="use">Choose a set of planning units that meets explicit targets.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Planning units, costs, features and targets</dd><dt>Output</dt><dd>Spatial conservation prioritization solution</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/package=prioritizr" aria-label="Upstream source for prioritizr">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="ecology" data-task="Time series and evidence synthesis" data-env="R" data-keywords="时间序列 证据综合 趋势分析 系统综述 ">
+      <div class="card-head"><span class="task">Time series and evidence synthesis</span><span class="ecosystem">R</span></div>
+      <h2>Kendall</h2><p class="use">Describe monotonic environmental trends over time.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Ordered univariate or seasonal observations</dd><dt>Output</dt><dd>Kendall trend statistics and significance tests</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/package=Kendall" aria-label="Upstream source for Kendall">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="ecology" data-task="Time series and evidence synthesis" data-env="R" data-keywords="时间序列 证据综合 趋势分析 系统综述 ">
+      <div class="card-head"><span class="task">Time series and evidence synthesis</span><span class="ecosystem">R</span></div>
+      <h2>bfast</h2><p class="use">Identify shifts in a satellite vegetation time series.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Dated, regularly spaced observations</dd><dt>Output</dt><dd>Detected trend and seasonal breakpoints</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/package=bfast" aria-label="Upstream source for bfast">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="ecology" data-task="Time series and evidence synthesis" data-env="R" data-keywords="时间序列 证据综合 趋势分析 系统综述 ">
+      <div class="card-head"><span class="task">Time series and evidence synthesis</span><span class="ecosystem">R</span></div>
+      <h2>forecast</h2><p class="use">Fit a seasonal statistical baseline for ecological observations.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Regular time series</dd><dt>Output</dt><dd>Forecasts and prediction intervals</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/package=forecast" aria-label="Upstream source for forecast">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="ecology" data-task="Time series and evidence synthesis" data-env="R" data-keywords="时间序列 证据综合 趋势分析 系统综述 ">
+      <div class="card-head"><span class="task">Time series and evidence synthesis</span><span class="ecosystem">R</span></div>
+      <h2>revtools</h2><p class="use">Organize screening of evidence for a synthesis.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Bibliographic search exports</dd><dt>Output</dt><dd>Deduplicated and screened citation records</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/package=revtools" aria-label="Upstream source for revtools">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="ecology" data-task="Time series and evidence synthesis" data-env="R" data-keywords="时间序列 证据综合 趋势分析 系统综述 ">
+      <div class="card-head"><span class="task">Time series and evidence synthesis</span><span class="ecosystem">R</span></div>
+      <h2>metagear</h2><p class="use">Coordinate extraction or screening for ecological meta-analysis.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Evidence-synthesis references and extracted study data</dd><dt>Output</dt><dd>Screening records and extracted analysis data</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/package=metagear" aria-label="Upstream source for metagear">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="ecology" data-task="Spatial data and GIS" data-env="GIS" data-keywords="空间分析 地理信息 GIS 栅格 矢量 制图 空间数据 ">
+      <div class="card-head"><span class="task">Spatial data and GIS</span><span class="ecosystem">Desktop GIS</span></div>
+      <h2>QGIS</h2><p class="use">Inspect spatial alignment and produce a geographic overview.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Spatial layers, tables and coordinates</dd><dt>Output</dt><dd>Interactive maps, spatial analysis and export</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://qgis.org/" aria-label="Upstream source for QGIS">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="ecology" data-task="Spatial data and GIS" data-env="Python" data-keywords="空间分析 地理信息 GIS 栅格 矢量 制图 空间数据 ">
+      <div class="card-head"><span class="task">Spatial data and GIS</span><span class="ecosystem">Python</span></div>
+      <h2>Rasterio</h2><p class="use">Read GeoTIFFs, preserve no-data flags and extract site values.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Georeferenced rasters, affine transforms and coordinates</dd><dt>Output</dt><dd>Raster arrays, samples and geospatial metadata</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://rasterio.readthedocs.io/en/stable/" aria-label="Upstream source for Rasterio">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="ecology" data-task="Spatial data and GIS" data-env="Python" data-keywords="空间分析 地理信息 GIS 栅格 矢量 制图 空间数据 ">
+      <div class="card-head"><span class="task">Spatial data and GIS</span><span class="ecosystem">Python</span></div>
+      <h2>GeoPandas</h2><p class="use">Work on site and region tables with explicit CRS handling.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Vector features with geometry and attributes</dd><dt>Output</dt><dd>Joined, transformed or overlaid vector features</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://geopandas.org/en/stable/" aria-label="Upstream source for GeoPandas">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="ecology" data-task="Environmental data and remote sensing" data-env="Python" data-keywords="遥感 环境变量 气候数据 环境协变量 卫星数据 ">
+      <div class="card-head"><span class="task">Environmental data and remote sensing</span><span class="ecosystem">Python</span></div>
+      <h2>xarray</h2><p class="use">Combine climate grids along time, space and depth dimensions.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Labeled multidimensional arrays such as NetCDF</dd><dt>Output</dt><dd>Indexed, aligned or aggregated gridded data</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://docs.xarray.dev/en/stable/" aria-label="Upstream source for xarray">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article>
+<article class="card" data-field="ecology" data-task="Environmental data and remote sensing" data-env="Python|Cloud|JavaScript" data-keywords="遥感 环境变量 气候数据 环境协变量 卫星数据 GEE 地球引擎 NDVI 遥感植被指数">
+      <div class="card-head"><span class="task">Environmental data and remote sensing</span><span class="ecosystem">Cloud / Python / JavaScript</span></div>
+      <h2>Google Earth Engine</h2><p class="use">Run cloud-based processing on multi-year imagery with a registered project.</p>
+      <details><summary>Inputs and outputs</summary><dl><dt>Input</dt><dd>Satellite or geospatial collections, dates and region</dd><dt>Output</dt><dd>Filtered composites, time series or exported features</dd></dl></details>
+      <div class="source"><a target="_blank" rel="noopener noreferrer" href="https://developers.google.com/earth-engine/guides" aria-label="Upstream source for Google Earth Engine">Upstream source <span aria-hidden="true">↗</span></a></div>
+    </article></div><p id="empty" class="empty" hidden>Try a broader keyword or clear a filter.</p>
+<div class="more"><button type="button" id="more" hidden>Show more tools</button></div>
+<footer>Directory works offline. Upstream documentation links require an internet connection.</footer></main>
+<script>
+const $ = id => document.getElementById(id);
+const cards = Array.from(document.querySelectorAll('article.card'));
+const q = $('search'), field = $('field'), task = $('task'), env = $('env');
+const pageSize = 18;
+let limit = pageSize;
+const normalize = s => s.toLowerCase().normalize('NFKC');
+const entries = cards.map(card => {
+  const text = normalize([card.querySelector('h2').textContent, card.dataset.task,
+    card.querySelector('.ecosystem').textContent, card.querySelector('.use').textContent,
+    card.querySelector('dl').textContent, card.dataset.keywords].join(' '));
+  return {card, text, words: new Set(text.split(/[^a-z0-9]+/))};
+});
+function refreshTasks(){
+  const previous = task.value;
+  const available = new Set(cards.filter(c => !field.value || c.dataset.field === field.value).map(c => c.dataset.task));
+  task.replaceChildren(new Option('All tasks',''));
+  Array.from(available).sort().forEach(t => task.add(new Option(t,t)));
+  if(available.has(previous)) task.value = previous;
+}
+function update(reset=true){
+  if(reset) limit = pageSize;
+  const words = normalize(q.value.trim()).split(/\s+/).filter(Boolean);
+  let matches = 0;
+  for(const {card,text,words: tokens} of entries){
+    const hit = (!field.value || card.dataset.field === field.value) &&
+      (!task.value || card.dataset.task === task.value) &&
+      (!env.value || card.dataset.env.split('|').includes(env.value)) &&
+      words.every(w => /^[a-z0-9]{1,3}$/.test(w) ? tokens.has(w) : text.includes(w));
+    card.hidden = !hit || matches >= limit;
+    if(hit) matches++;
+  }
+  $('count').textContent = matches ? 'Showing ' + Math.min(limit,matches) + ' of ' + matches +
+    ' matching tool' + (matches === 1 ? '' : 's') : '0 matching tools';
+  $('empty').hidden = matches !== 0;
+  $('more').hidden = matches <= limit;
+  $('reset').disabled = !q.value && !field.value && !task.value && !env.value;
+}
+q.addEventListener('input',() => update());
+field.addEventListener('change',() => {refreshTasks(); update()});
+[task,env].forEach(c => c.addEventListener('change',() => update()));
+$('reset').addEventListener('click',() => {q.value='';field.value='';env.value='';task.value='';refreshTasks();update();q.focus()});
+$('more').addEventListener('click',() => {limit+=pageSize;update(false)});
+refreshTasks();update();
+</script></body></html>
